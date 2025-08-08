@@ -16,4 +16,9 @@ class Solution:
             nums1[p]=nums2[p2]
             p-=1
             p2-=1
+
+        while p1>=0:
+            nums1[p]=nums1[p1]
+            p-=1
+            p1-=1
         
