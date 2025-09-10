@@ -1,16 +1,18 @@
+from collections import deque
+from typing import List
 class Solution:
     def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
-        counts = [0, 0]
-        for student in students:
-            counts[student] += 1
+        q = deque(students)
+        stack = sandwiches[:]
+        count = 0
 
-        remaining = len(sandwiches)
-        for sandwich in sandwiches:
-            if counts[sandwich] == 0:
-                break
-            if remaining == 0:
-                break
-            counts[sandwich] -= 1
-            remaining -= 1
+        while q and count < len(q):
+            if stack[0] == q[0]:
+                q.popleft()
+                stack.pop(0)
+                count = 0
+            else:
+                q.append(q.popleft())
+                count +=1
+        return len(q)
         
-        return remaining
