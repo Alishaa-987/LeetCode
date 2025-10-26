@@ -1,14 +1,19 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
 class Solution:
-    def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:
-        s = set(nums)
-        dummy = tmp = ListNode()
+    def modifiedList(self, nums: list[int], head: ListNode) -> ListNode:
+        to_delete = set(nums)
+        dummy = ListNode(0)
         dummy.next = head
-        while tmp.next:
-            if tmp.next.val in s: tmp.next = tmp.next.next
-            else: tmp = tmp.next
+        current = dummy
+
+        while current.next:
+            if current.next.val in to_delete:
+                current.next = current.next.next  # delete node
+            else:
+                current = current.next  # move ahead
+
         return dummy.next
