@@ -13,14 +13,12 @@ class Solution:
             slow = slow.next
             fast = fast.next.next
             if slow and slow == fast:
-                # Cycle is present, cut the cycle here
                 newhead = slow.next
                 slow.next = None
         if not newhead:
-            # When cycle is present return None
             return None
 
-        # Find the intersection. No need to check if the intersection exists as both the section are still part of the orignal linkedlist.
+
         curra = head
         currb = newhead
         while curra != currb:
